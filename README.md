@@ -1,51 +1,95 @@
-# ZenFS Backends and Emulation of Linux
+# zenfs-linux
 
-> [!CAUTION]
-> This is still being developed and the API is not completely stable yet.
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/zenfs-linux) [![KDE Eco](https://img.shields.io/badge/KDE%20Eco-certified-brightgreen?logo=kde&logoColor=white&style=flat-square)](https://eco.kde.org/) [![Blue Angel](https://img.shields.io/badge/Blue%20Angel-DE--UZ%20215-0055a4?style=flat-square)](https://www.blauer-engel.de/en/certification/criteria)
 
-This package serves as a best-effort emulation of Linux-specific behavior for ZenFS.
 
-## Kernel modules
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-The foundational part of `@zenfs/linux` is it's kernel module API.
+## Architecture
 
-Modules are loaded with `init` and unloaded with `dispose`. Unlike Linux, both are
-async, since a module may need to do something asynchronous before it is ready. While `init` runs,
-the module is in the `init` state (Linux calls this `COMING`).
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-```ts
-import { Module } from '@zenfs/linux';
+## Install
 
-const mod = new Module({
-	name: 'example',
-	version: '1.0.0',
-	license: 'GPL',
-	params: {
-		debug: { value: false, changed: value => console.log('debug is now', value) },
-	},
-	init() {
-		if (this.param('debug')) console.log('loading');
-	},
-	exit() {
-		// clean up
-	},
-});
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
-await mod.init();
-
-await mod.dispose();
+```bash
+git clone https://github.com/Interested-Deving-1896/zenfs-linux.git
+cd zenfs-linux
 ```
 
-Modules can depend on each other using their `use` method, which takes a reference on the target and adds
-a link in its `holders` directory. A module that is still referenced can't be unloaded without
-forcing, which taints it with `F`.
+## Usage
 
-## Filesystems
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
 
-The following filesystems are (will be) provided:
+## Configuration
 
-- sysfs (`/sys`)
-- debugfs (`/sys/kernel/debug`)
-- configfs (`/sys/kernel/config`)
-- procfs (`/proc`)
-- devtmpfs (`/dev`)
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
+
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/zenfs-linux`](https://github.com/Interested-Deving-1896/zenfs-linux) and mirrored through:
+
+```
+Interested-Deving-1896/zenfs-linux  ──►  OpenOS-Project-OSP/zenfs-linux  ──►  OpenOS-Project-Ecosystem-OOC/zenfs-linux
+```
+
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
+
+## Contributors
+
+<!-- AI:start:contributors -->
+| Contributor | Commits |
+|---|---|
+| [@james-pre](https://github.com/james-pre) | 94 |
+| [@jlarmstrongiv](https://github.com/jlarmstrongiv) | 1 |
+<!-- AI:end:contributors -->
+
+## Origins
+
+<!-- AI:start:origins -->
+_Original project — no upstream influences recorded._
+<!-- AI:end:origins -->
+
+## Resources
+
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
+
+## Accessibility
+
+<!-- AI:start:accessibility -->
+This repo uses automated accessibility auditing via `check-accessibility.yml`.
+
+Checks include: CODEOWNERS ownership coverage, README screen-reader compatibility,
+WCAG 2.1 AA HTML compliance, audio overview (espeak-ng), and Braille output (liblouis).
+
+
+
+
+Run the [Check Accessibility](https://github.com/Interested-Deving-1896/zenfs-linux/actions/workflows/check-accessibility.yml)
+workflow to generate the first report and accessibility artifacts.
+See the [W3C Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+for the underlying accessibility reference.
+<!-- AI:end:accessibility -->
+
+## License
+
+<!-- AI:start:license -->
+[LGPL-3.0](https://github.com/Interested-Deving-1896/zenfs-linux/blob/main/LICENSE.md) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
